@@ -55,10 +55,7 @@ public class Stats<T extends Number> {
         return Math.sqrt(variance);
     }
 
-    /**
-     * Retourne la somme de tous les éléments d'une liste de nombres.
-     * T extends Number garantit l'accès à doubleValue().
-     */
+
     public static <T extends Number> double somme(List<T> liste) {
         if (liste == null || liste.isEmpty()) {
             return 0.0;
@@ -68,5 +65,9 @@ public class Stats<T extends Number> {
             total += element.doubleValue();
         }
         return total;
+        /*
+         * Stats<String> est invalide, car la classe Stats impose un paramètre de type qui doit être un sous-type de Number,
+         * et String ne respecte pas cette contrainte, donc le compilateur refuse la déclaration.
+         */
     }
 }
