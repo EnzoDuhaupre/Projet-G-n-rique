@@ -4,14 +4,24 @@ public class PileUtils {
         if (source == null) {
             throw new IllegalArgumentException("source ne peut pas être null");
         }
-        // On parcourt la pile source de la base vers le sommet
-        // et on empile dans l'ordre inverse dans la nouvelle pile.
-        Pile<T> resultat = new Pile<>();
-        int taille = source.taille();
-        for (int i = 0; i < taille; i++) {
-            // get(i) correspond à l'élément à la position i depuis la base
-            resultat.empiler(source.elements.get(i));
+        if (source.estVide()) {
+            return new Pile<>(); 
         }
+
+        Pile<T> resultat = new Pile<>();
+        Pile<T> temp = new Pile<>();
+
+        while (!source.estVide()) {
+            T element = source.depiler();
+            temp.empiler(element);
+            resultat.empiler(element);
+        }
+
+        // Remettre la pile source dans son état initial
+        while (!temp.estVide()) {
+            source.empiler(temp.depiler());
+        }
+
         return resultat;
     }
 }
