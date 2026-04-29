@@ -1,4 +1,2 @@
-package PACKAGE_NAME;
-
-public class Forme {
+abstract class Forme { abstract double surface();
 }
